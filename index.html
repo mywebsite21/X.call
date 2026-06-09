@@ -3,17 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FX Group Community</title>
+  <title>Pinak</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Icons (Lucide) -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Tailwind CSS via CDN (NO BUILD REQUIRED) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -37,10 +34,8 @@
 </head>
 <body class="bg-darker text-white font-sans antialiased overflow-x-hidden selection:bg-primary/30">
   
-  <!-- Global Scroll Progress Bar -->
   <div id="scroll-progress" class="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary transform origin-left scale-x-0 z-[1000] transition-transform duration-100"></div>
 
-  <!-- Advanced Animated Mesh Background -->
   <div class="bg-grid-wrapper">
     <div class="bg-grid"></div>
     <div class="absolute top-[20%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/10 blur-[150px] mix-blend-screen pointer-events-none float-1"></div>
@@ -48,7 +43,6 @@
   </div>
 
   <div class="relative z-10 w-full overflow-hidden">
-    <!-- Navbar -->
     <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 bg-transparent py-6">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="flex justify-between items-center">
@@ -59,7 +53,7 @@
                <i data-lucide="trending-up" class="w-6 h-6 text-white relative z-10" stroke-width="3"></i>
              </div>
              <div class="flex flex-col">
-               <span class="font-display font-bold text-xl tracking-wider leading-none text-white">FX GROUP</span>
+               <span class="font-display font-bold text-xl tracking-wider leading-none text-white">Pinak</span>
                <span class="text-xs text-primary font-medium tracking-[0.2em] uppercase mt-1">Community</span>
              </div>
           </div>
@@ -68,8 +62,8 @@
             <a href="#features" class="text-sm font-medium text-gray-300 hover:text-primary transition-colors">Architecture</a>
             <a href="#stats" class="text-sm font-medium text-gray-300 hover:text-primary transition-colors">Markets</a>
             <a href="#education" class="text-sm font-medium text-gray-300 hover:text-primary transition-colors">Signals</a>
+            <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-primary transition-colors">Contact</a>
             
-            <!-- Dynamic Referral Badge injected by JS -->
             <div id="nav-admin-badge" class="hidden items-center gap-2 ml-4 pl-4 border-l border-white/10">
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span id="nav-admin-text" class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Referral</span>
@@ -87,11 +81,9 @@
     </nav>
     
     <main>
-      <!-- Hero Section -->
       <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 min-h-[95vh] flex items-center justify-center overflow-hidden w-full">
         <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
           
-          <!-- Left Content -->
           <div class="flex flex-col items-start text-left reveal-up origin-bottom">
             <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-premium border border-primary/20 mb-8">
               <span class="relative flex h-3 w-3">
@@ -123,7 +115,6 @@
             </div>
           </div>
 
-          <!-- Right Content (Holographic Visual) -->
           <div class="relative hidden lg:flex items-center justify-center h-[600px] w-full perspective-[1000px] reveal-up delay-200">
              <div class="relative w-64 h-64 border-2 border-primary/20 rounded-full flex items-center justify-center preserve-3d animate-spin-slow">
                <div class="absolute inset-x-0 w-full h-full border border-secondary/30 rounded-full rotate-x-60"></div>
@@ -161,14 +152,11 @@
         </div>
       </section>
 
-      <!-- Ticker -->
       <div class="ticker-overflow shadow-[0_0_20px_rgba(0,240,255,0.1)] relative z-20">
         <div class="ticker-wrap flex gap-12" id="ticker-content">
-          <!-- Filled by JS -->
-        </div>
+          </div>
       </div>
 
-      <!-- Architecture -->
       <section id="features" class="py-32 relative px-6 z-20">
         <div class="max-w-7xl mx-auto">
           <div class="text-center mb-20 reveal-up">
@@ -209,7 +197,6 @@
         </div>
       </section>
 
-      <!-- Stats Section -->
       <section id="stats" class="py-24 px-6 relative z-20">
         <div class="max-w-7xl mx-auto">
           <div class="glass-premium border border-primary/20 rounded-[3rem] p-12 md:p-20 relative overflow-hidden flex flex-col md:flex-row gap-16 justify-between items-center reveal-up">
@@ -250,7 +237,6 @@
         </div>
       </section>
 
-      <!-- Terminal Modules -->
       <section class="py-32 px-6 z-20 relative">
         <div class="max-w-7xl mx-auto">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -273,7 +259,6 @@
                       <stop offset="100%" stopColor="rgba(0, 240, 255, 0)" />
                     </linearGradient>
                   </defs>
-                  <!-- Classes added for custom JS animation -->
                   <path class="anim-chart-fill opacity-0 translate-y-[100px] transition-all duration-[1.5s]" d="M0,80 L10,75 L20,85 L30,60 L40,65 L50,40 L60,45 L70,20 L80,30 L90,10 L100,5 L100,100 L0,100 Z" fill="url(#chartGrade)" />
                   <path class="anim-chart-stroke draw-path" d="M0,80 L10,75 L20,85 L30,60 L40,65 L50,40 L60,45 L70,20 L80,30 L90,10 L100,5" fill="none" stroke="#00f0ff" stroke-width="0.5" />
                 </svg>
@@ -311,7 +296,6 @@
         </div>
       </section>
 
-      <!-- Testimonials -->
       <section class="py-24 overflow-hidden relative z-20 reveal-up">
         <div class="text-center mb-16 px-6">
           <h2 class="text-3xl md:text-5xl font-display font-bold">Elite <span class="text-gradient">Feedback</span></h2>
@@ -321,7 +305,6 @@
           <div class="absolute top-0 left-0 bottom-0 w-32 bg-gradient-to-r from-darker to-transparent z-10 pointer-events-none"></div>
           <div class="absolute top-0 right-0 bottom-0 w-32 bg-gradient-to-l from-darker to-transparent z-10 pointer-events-none"></div>
 
-          <!-- JavaScript will duplicate this to scroll infinitely -->
           <div class="flex gap-6 px-4 whitespace-nowrap animate-slide-infinite">
             <div class="glass-premium border border-white/5 w-[350px] p-8 rounded-3xl shrink-0 hover:border-primary/30 transition-colors whitespace-normal">
               <div class="flex justify-between items-start mb-6">
@@ -367,7 +350,6 @@
               <p class="text-gray-400 font-light leading-relaxed text-sm">" Pips don't lie. Been compounding my account 15% a month since joining the inner circle. "</p>
             </div>
             
-            <!-- Duplicates for seamless looping -->
             <div class="glass-premium border border-white/5 w-[350px] p-8 rounded-3xl shrink-0 hover:border-primary/30 transition-colors whitespace-normal">
               <div class="flex justify-between items-start mb-6">
                  <div>
@@ -415,7 +397,40 @@
         </div>
       </section>
 
-      <!-- CTA Section -->
+      <section id="contact" class="py-32 relative px-6 z-20">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-20 reveal-up">
+            <h2 class="text-sm font-mono text-primary uppercase tracking-[0.3em] font-bold mb-4">Get In Touch</h2>
+            <h3 class="text-4xl md:text-5xl font-display font-bold">CONTACT <span class="text-gradient">ME.</span></h3>
+          </div>
+          
+          <div class="glass-premium p-8 md:p-16 rounded-[3rem] border border-white/10 flex flex-col md:flex-row items-center gap-12 reveal-up glow-border">
+            <div class="w-full md:w-1/3 flex justify-center">
+              <div class="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary/30 shadow-[0_0_30px_rgba(0,240,255,0.3)]">
+                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="Pinak Contact" class="w-full h-full object-cover" />
+              </div>
+            </div>
+            
+            <div class="w-full md:w-2/3 flex flex-col gap-6 text-center md:text-left">
+              <h4 class="text-2xl font-bold text-white">Let's build something amazing</h4>
+              <p class="text-gray-400 font-light leading-relaxed">Feel free to reach out to me for any project inquiries, collaborations, or just to say hi!</p>
+              
+              <div class="flex flex-col gap-4 mt-4 items-center md:items-start">
+                <div class="flex items-center gap-4 glass-premium p-4 rounded-xl border border-white/5 hover:border-primary/30 transition-colors cursor-pointer w-fit">
+                  <i data-lucide="phone" class="w-6 h-6 text-primary"></i>
+                  <span class="text-gray-200 font-mono">+880 1234 567890</span>
+                </div>
+                
+                <div class="flex items-center gap-4 glass-premium p-4 rounded-xl border border-white/5 hover:border-primary/30 transition-colors cursor-pointer w-fit">
+                  <i data-lucide="mail" class="w-6 h-6 text-secondary"></i>
+                  <span class="text-gray-200 font-mono">contact@pinak.com</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="py-32 px-6 relative z-20">
         <div class="max-w-5xl mx-auto glass-premium p-16 rounded-[3rem] text-center relative overflow-hidden glow-border reveal-up">
           <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-50"></div>
@@ -435,12 +450,11 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="py-12 px-6 border-t border-white/5 bg-darker relative z-20">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         <div class="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
            <i data-lucide="trending-up" class="w-6 h-6 text-primary"></i>
-           <span class="font-display font-bold text-lg tracking-wider text-white">FX GROUP</span>
+           <span class="font-display font-bold text-lg tracking-wider text-white">Pinak</span>
         </div>
         <div class="flex gap-6 text-sm text-gray-500 font-mono">
            <a href="#" class="hover:text-primary transition-colors">PRIVACY_POLICY</a>
@@ -452,16 +466,16 @@
         <p class="text-xs text-gray-600 max-w-3xl mx-auto">
           RISK WARNING: Trading foreign exchange on margin carries a high level of risk, and may not be suitable for all investors. Past performance is not indicative of future results. The high degree of leverage can work against you as well as for you.
         </p>
+        <p class="text-sm text-gray-400 mt-4">
+          Developed by Pinak Designer
+        </p>
       </div>
     </footer>
   </div>
 
-  <!-- Registration Modal -->
   <div id="registration-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
-    <!-- Backdrop -->
     <div id="modal-backdrop" class="absolute inset-0 bg-darker/80 backdrop-blur-md opacity-0 transition-opacity duration-300"></div>
     
-    <!-- Modal Content Box -->
     <div id="modal-content" class="relative w-full max-w-md glass-premium rounded-[2rem] p-8 shadow-2xl border border-primary/20 glow-border transform scale-90 opacity-0 translate-y-8 duration-300">
       <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
       
@@ -469,7 +483,6 @@
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <!-- Form View -->
       <div id="form-view" class="relative z-10 transition-opacity">
         <h2 class="text-3xl font-display font-bold mb-2 text-white">Join <span class="text-gradient">Hub</span></h2>
         <p class="text-gray-400 text-sm mb-8 font-light">Complete authentication to gain access to the secure neural network.</p>
@@ -504,7 +517,6 @@
         </form>
       </div>
 
-      <!-- Success View (Hidden initially) -->
       <div id="success-view" class="hidden py-12 text-center flex-col items-center relative z-10 transform opacity-0 transition-opacity duration-500">
         <div class="w-24 h-24 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mb-6 border-2 border-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.5)] animate-bounce-soft">
           <i data-lucide="check" class="w-12 h-12"></i>
