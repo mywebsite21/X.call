@@ -1,5 +1,5 @@
-/* Advanced Animated Backgrounds */
-.bg-grid-wrapper {
+/* Aurora Background Animations */
+.bg-aurora-wrapper {
   position: absolute;
   inset: 0;
   overflow: hidden;
@@ -8,54 +8,59 @@
   background: var(--color-darker);
 }
 
-.bg-grid {
+.orb {
   position: absolute;
-  inset: -100%;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(circle at center, black, transparent 60%);
-  animation: grid-spin 120s linear infinite;
-  transform-origin: center;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+  animation: float-orb 20s infinite ease-in-out alternate;
 }
 
-@keyframes grid-spin {
-  from { transform: rotate(0deg) translateY(0); }
-  to { transform: rotate(360deg) translateY(100px); }
+.orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #00FFA3; animation-delay: 0s; }
+.orb-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #00B8FF; animation-delay: -5s; }
+.orb-3 { top: 30%; left: 30%; width: 40vw; height: 40vw; background: #10b981; animation-delay: -10s; }
+
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  mix-blend-mode: overlay;
 }
 
-/* Glass & Glow Elements */
+@keyframes float-orb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(10vw, 10vh) scale(1.1); }
+}
+
+/* Glassmorphism Styles */
 .glass-premium {
-  background-color: rgba(8, 8, 21, 0.6);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  background-color: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.text-gradient {
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(to right, #00f0ff, #b066ff, #7000ff);
+.glass-nav {
+  background-color: rgba(3, 7, 18, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.glow-border {
-  position: relative;
-}
-.glow-border::before {
+/* Navigation Link Underline Hover */
+.nav-link::after {
   content: '';
   position: absolute;
-  inset: -2px;
-  background: linear-gradient(45deg, #00f0ff, #7000ff, #00f0ff);
-  z-index: -1;
-  border-radius: inherit;
-  filter: blur(10px);
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #00FFA3;
+  transition: width 0.3s ease;
 }
-.glow-border:hover::before {
-  opacity: 1;
+.nav-link:hover::after {
+  width: 100%;
 }
 
 /* Infinite Ticker */
@@ -64,10 +69,6 @@
   white-space: nowrap;
   display: flex;
   width: 100vw;
-  background: linear-gradient(90deg, rgba(112,0,255,0.1), rgba(0,240,255,0.1));
-  border-top: 1px solid rgba(255,255,255,0.05);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  padding: 12px 0;
 }
 
 .ticker-wrap {
@@ -82,34 +83,7 @@
   100% { transform: translateX(-50%); }
 }
 
-/* Floating Elements */
-.float-1 { animation: float1 10s ease-in-out infinite; }
-.float-2 { animation: float2 14s ease-in-out infinite reverse; }
-
-@keyframes float1 {
-  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-  50% { transform: translateY(-30px) rotate(10deg) scale(1.05); }
-}
-
-@keyframes float2 {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(40px) rotate(-10deg); }
-}
-
-/* Extra animations */
-.preserve-3d {
-  transform-style: preserve-3d;
-}
-.animate-spin-slow {
-  animation: spin 20s linear infinite;
-}
-.animate-ping-slow {
-  animation: custom-ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-@keyframes custom-ping {
-  75%, 100% { transform: scale(2.5); opacity: 0; }
-}
-
+/* Chart SVG Animation */
 @keyframes drawPath {
   from { stroke-dashoffset: 1000; }
   to { stroke-dashoffset: 0; }
@@ -122,11 +96,11 @@
   animation: drawPath 2s ease-out forwards;
 }
 
-/* Scroll Reveling (Replacing Framer Motion) */
+/* Scroll Revealing Animation (Used by JS IntersectionObserver) */
 .reveal-up {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-up.is-visible {
   opacity: 1;
@@ -137,7 +111,7 @@
 .delay-300 { transition-delay: 300ms; }
 .delay-400 { transition-delay: 400ms; }
 
-/* Testimonials Loop */
+/* Testimonials / Gallery Loop */
 .animate-slide-infinite {
   animation: slideLeft 40s linear infinite;
 }
@@ -146,11 +120,18 @@
   100% { transform: translateX(-50%); }
 }
 
-/* Bounce soft */
+/* Extra Utility Animations */
 @keyframes bounce-up-down {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
 .animate-bounce-soft {
   animation: bounce-up-down 2s ease-in-out infinite;
+}
+
+.animate-ping-slow {
+  animation: custom-ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes custom-ping {
+  75%, 100% { transform: scale(2.5); opacity: 0; }
 }
