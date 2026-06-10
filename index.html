@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinak</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            display: ['Syncopate', 'sans-serif'],
+          },
+          colors: {
+            primary: '#00f0ff',
+            secondary: '#7000ff',
+            darker: '#01000a'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="./index.css" />
+</head>
+<body class="bg-darker text-white font-sans antialiased overflow-x-hidden selection:bg-primary/30">
+  
+  <div id="scroll-progress" class="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary transform origin-left scale-x-0 z-[1000] transition-transform duration-100"></div>
+
+  <div class="bg-grid-wrapper">
+    <div class="bg-grid"></div>
+    <div class="absolute top-[20%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/10 blur-[150px] mix-blend-screen pointer-events-none float-1"></div>
+    <div class="absolute top-[60%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-secondary/15 blur-[150px] mix-blend-screen pointer-events-none float-2"></div>
+  </div>
+
+  <div class="relative z-10 w-full overflow-hidden">
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 bg-transparent py-6">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+          
+          <div class="flex items-center gap-3 cursor-pointer hover:scale-105 transition-transform">
+             <div class="relative w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-secondary shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+               <div class="absolute inset-0 bg-white/20 rounded-xl blur-sm"></div>
+               <i data-lucide="trending-up" class="w-6 h-6 text-white relative z-10" stroke-width="3"></i>
+             </div>
+             <div class="flex flex-col">
+               <span class="font-display font-bold text-xl tracking-wider leading-none text-white">Pinak</span>
+               <span class="text-xs text-primary font-medium tracking-[0.2em] uppercase mt-1">Community</span>
+             </div>
+          </div>
+
+          <div class="hidden lg:flex items-center gap-8 bg-white/5 border border-white/5 py-3 px-8 rounded-full backdrop-blur-md">
+            <a href="#features" class="text-sm font-medium text-gray-300 hover:text-primary transition-colors">Architecture</a>
+            <a href="#stats" class="text-sm font-medium text-gray-300 hover:text-primary transition-colors">Markets</a>
+            <a href="#education" class="text-sm font-medium text-gray-300 hover:text-primary transition-colors">Signals</a>
+            <a href="#media" class="text-sm font-medium text-gray-300 hover:text-primary transition-colors">Media</a>
+            
+            <div id="nav-admin-badge" class="hidden items-center gap-2 ml-4 pl-4 border-l border-white/10">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span id="nav-admin-text" class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Referral</span>
+            </div>
+          </div>
+
+          <button class="open-modal-btn hidden md:flex relative group px-6 py-2.5 rounded-full glass-premium overflow-hidden border border-primary/30 glow-border hover:scale-105 transition-transform duration-300 cursor-pointer">
+            <span class="relative z-10 font-bold text-sm bg-gradient-to-r from-primary to-white bg-clip-text text-transparent group-hover:text-white transition-all">
+              Initialize Portal
+            </span>
+          </button>
+          
+        </div>
+      </div>
+    </nav>
+    
+    <main>
+      <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 min-h-[95vh] flex items-center justify-center overflow-hidden w-full">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+          
+          <div class="flex flex-col items-start text-left reveal-up origin-bottom">
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-premium border border-primary/20 mb-8">
+              <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+              </span>
+              <span class="text-sm font-medium tracking-wide text-gray-200">System Online • Zero Latency</span>
+            </div>
+            
+            <h1 class="text-5xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter mb-6 leading-[1.05]">
+              DOMINATE<br />
+              <span class="text-gradient">THE TREND.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-400 max-w-xl mb-10 leading-relaxed font-light">
+              Quantum-speed signals, institutional flow logic, and elite community backing. Elevate your execution edge.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <button class="open-modal-btn relative group px-8 py-4 rounded-xl font-bold text-darker bg-gradient-to-r from-primary to-secondary overflow-hidden shadow-[0_0_40px_rgba(0,240,255,0.4)] hover:shadow-[0_0_60px_rgba(112,0,255,0.6)] transition-all duration-300">
+                 <span class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></span>
+                 <span class="relative flex items-center justify-center gap-2">
+                   Join Neural Network <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                 </span>
+              </button>
+              <button class="px-8 py-4 rounded-xl font-bold text-white glass-premium hover:bg-white/5 transition-all flex items-center justify-center gap-2">
+                 View Live Performance <i data-lucide="activity" class="w-5 h-5 text-gray-400"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="relative hidden lg:flex items-center justify-center h-[600px] w-full perspective-[1000px] reveal-up delay-200">
+             <div class="relative w-64 h-64 border-2 border-primary/20 rounded-full flex items-center justify-center preserve-3d animate-spin-slow">
+               <div class="absolute inset-x-0 w-full h-full border border-secondary/30 rounded-full rotate-x-60"></div>
+               <div class="absolute inset-x-0 w-full h-full border border-primary/30 rounded-full rotate-y-60"></div>
+               
+               <div class="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-[0_0_50px_rgba(0,240,255,0.6)] animate-pulse">
+                 <i data-lucide="globe" class="w-12 h-12 text-white"></i>
+               </div>
+             </div>
+
+             <div class="absolute top-[10%] right-[10%] glass-premium p-4 rounded-xl border border-emerald-500/30 w-48 shadow-2xl float-1">
+               <div class="flex justify-between items-center mb-2">
+                 <span class="text-xs font-bold text-gray-400">Signal Captured</span>
+                 <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+               </div>
+               <div class="font-mono text-lg font-bold text-white mb-1">XAU/USD</div>
+               <div class="text-emerald-400 text-sm font-semibold flex items-center gap-1">
+                 <i data-lucide="trending-up" class="w-4 h-4"></i> +145 Pips
+               </div>
+             </div>
+
+             <div class="absolute bottom-[20%] left-[5%] glass-premium p-4 rounded-xl border border-primary/30 w-56 shadow-2xl float-2">
+               <div class="flex gap-3 items-center">
+                 <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                   <i data-lucide="target" class="w-5 h-5 text-primary"></i>
+                 </div>
+                 <div>
+                   <div class="text-xs text-gray-400 uppercase tracking-widest font-bold">Accuracy</div>
+                   <div class="text-xl font-bold font-mono">92.4%</div>
+                 </div>
+               </div>
+             </div>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="ticker-overflow shadow-[0_0_20px_rgba(0,240,255,0.1)] relative z-20">
+        <div class="ticker-wrap flex gap-12" id="ticker-content">
+          </div>
+      </div>
+
+      <section id="features" class="py-32 relative px-6 z-20">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-20 reveal-up">
+            <h2 class="text-sm font-mono text-primary uppercase tracking-[0.3em] font-bold mb-4">Core Infrastructure</h2>
+            <h3 class="text-4xl md:text-5xl font-display font-bold">BUILT FOR <span class="text-gradient">EXECUTION.</span></h3>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-premium p-8 rounded-3xl group glow-border hover:-translate-y-2 transition-transform duration-300 reveal-up duration-500 delay-100">
+              <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:bg-white/10 transition-colors">
+                <i data-lucide="line-chart" class="w-8 h-8 text-primary"></i>
+              </div>
+              <h4 class="text-xl font-bold mb-3 tracking-tight">Real-Time Signals</h4>
+              <p class="text-gray-400 leading-relaxed font-light text-sm">Latency-free trade setups streamed directly to our private servers.</p>
+            </div>
+            <div class="glass-premium p-8 rounded-3xl group glow-border hover:-translate-y-2 transition-transform duration-300 reveal-up duration-500 delay-200">
+              <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:bg-white/10 transition-colors">
+                <i data-lucide="globe" class="w-8 h-8 text-secondary"></i>
+              </div>
+              <h4 class="text-xl font-bold mb-3 tracking-tight">Global Macro Analysis</h4>
+              <p class="text-gray-400 leading-relaxed font-light text-sm">Daily deep-dives into institutional order flow and world markets.</p>
+            </div>
+            <div class="glass-premium p-8 rounded-3xl group glow-border hover:-translate-y-2 transition-transform duration-300 reveal-up duration-500 delay-300">
+              <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:bg-white/10 transition-colors">
+                <i data-lucide="zap" class="w-8 h-8 text-primary"></i>
+              </div>
+              <h4 class="text-xl font-bold mb-3 tracking-tight">Prop Firm Strategies</h4>
+              <p class="text-gray-400 leading-relaxed font-light text-sm">Verified systems engineered to pass challenges and secure capital.</p>
+            </div>
+            <div class="glass-premium p-8 rounded-3xl group glow-border hover:-translate-y-2 transition-transform duration-300 reveal-up duration-500 delay-400">
+              <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:bg-white/10 transition-colors">
+                <i data-lucide="shield-check" class="w-8 h-8 text-secondary"></i>
+              </div>
+              <h4 class="text-xl font-bold mb-3 tracking-tight">Risk Management</h4>
+              <p class="text-gray-400 leading-relaxed font-light text-sm">Strict drawdown controls to protect your psychology and account.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="stats" class="py-24 px-6 relative z-20">
+        <div class="max-w-7xl mx-auto">
+          <div class="glass-premium border border-primary/20 rounded-[3rem] p-12 md:p-20 relative overflow-hidden flex flex-col md:flex-row gap-16 justify-between items-center reveal-up">
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-primary/10 to-transparent rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="flex-1 text-center md:text-left z-10 w-full">
+              <h2 class="text-3xl md:text-5xl font-display font-bold mb-6 leading-tight">Quantifiable <br /><span class="text-gradient">Performance</span></h2>
+              <p class="text-gray-400 max-w-md mx-auto md:mx-0">We don't deal in promises. We deal in verified statistics, compounded growth, and community success.</p>
+            </div>
+
+            <div class="flex-1 w-full grid grid-cols-2 gap-8 z-10 pointer-events-none">
+              <div class="flex flex-col gap-2">
+                <span class="text-5xl font-bold text-white font-mono tracking-tighter counter-wrap">
+                  <span class="counter" data-target="15">0</span>K+
+                </span>
+                <span class="text-xs uppercase tracking-widest text-primary font-bold">Active Members</span>
+              </div>
+              <div class="flex flex-col gap-2">
+                <span class="text-5xl font-bold text-white font-mono tracking-tighter counter-wrap">
+                  <span class="counter" data-target="92">0</span>%
+                </span>
+                <span class="text-xs uppercase tracking-widest text-primary font-bold">Win Rate Limit</span>
+              </div>
+              <div class="flex flex-col gap-2">
+                <span class="text-5xl font-bold text-white font-mono tracking-tighter counter-wrap">
+                  $<span class="counter" data-target="10">0</span>M+
+                </span>
+                <span class="text-xs uppercase tracking-widest text-primary font-bold">Capital Funded</span>
+              </div>
+              <div class="flex flex-col gap-2">
+                <span class="text-5xl font-bold text-white font-mono tracking-tighter counter-wrap">
+                  <span class="counter" data-target="24">0</span>/7
+                </span>
+                <span class="text-xs uppercase tracking-widest text-primary font-bold">Support Ops</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-32 px-6 z-20 relative">
+        <div class="max-w-7xl mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <div class="w-full aspect-square md:aspect-[4/3] rounded-[2rem] glass-premium p-6 flex flex-col relative overflow-hidden group border border-white/10 reveal-up">
+              <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+                <div class="flex gap-2">
+                  <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                </div>
+                <span class="text-xs font-mono text-gray-400">FX_ALGO_TERMINAL_V2</span>
+              </div>
+              
+              <div class="flex-1 relative w-full h-full border border-white/5 bg-[#01000a]/50 rounded-xl overflow-hidden flex items-end svg-container">
+                <svg class="w-full h-[80%] absolute bottom-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="chartGrade" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="rgba(0, 240, 255, 0.3)" />
+                      <stop offset="100%" stopColor="rgba(0, 240, 255, 0)" />
+                    </linearGradient>
+                  </defs>
+                  <path class="anim-chart-fill opacity-0 translate-y-[100px] transition-all duration-[1.5s]" d="M0,80 L10,75 L20,85 L30,60 L40,65 L50,40 L60,45 L70,20 L80,30 L90,10 L100,5 L100,100 L0,100 Z" fill="url(#chartGrade)" />
+                  <path class="anim-chart-stroke draw-path" d="M0,80 L10,75 L20,85 L30,60 L40,65 L50,40 L60,45 L70,20 L80,30 L90,10 L100,5" fill="none" stroke="#00f0ff" stroke-width="0.5" />
+                </svg>
+
+                <div class="absolute bottom-[5%] right-[0%] w-2 h-2 bg-primary rounded-full shadow-[0_0_10px_#00f0ff] animate-ping-slow"></div>
+              </div>
+            </div>
+
+            <div class="flex flex-col reveal-up delay-200">
+              <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">Analyze. Execute. <br /><span class="text-gradient">Extract.</span></h2>
+              <p class="text-gray-400 mb-8 leading-relaxed font-light">Experience institutional grade analysis without the noise. Our terminal integrates our premium signals directly with charting insights, giving you the complete context behind every trade we take.</p>
+              
+              <ul class="space-y-6">
+                <li class="flex items-center gap-4 group cursor-default">
+                  <div class="w-10 h-10 rounded-full glass-premium border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:border-primary/50 transition-all">
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-primary"></i>
+                  </div>
+                  <span class="text-lg font-medium text-gray-200">Daily Video Breakdowns & Projections</span>
+                </li>
+                <li class="flex items-center gap-4 group cursor-default">
+                  <div class="w-10 h-10 rounded-full glass-premium border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:border-primary/50 transition-all">
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-primary"></i>
+                  </div>
+                  <span class="text-lg font-medium text-gray-200">Complete Entry, SL, and TP Coordinates</span>
+                </li>
+                <li class="flex items-center gap-4 group cursor-default">
+                  <div class="w-10 h-10 rounded-full glass-premium border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:border-primary/50 transition-all">
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-primary"></i>
+                  </div>
+                  <span class="text-lg font-medium text-gray-200">Live Trading Sessions & Mentorship</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="media" class="py-24 overflow-hidden relative z-20 reveal-up">
+        <div class="text-center mb-16 px-6">
+          <h2 class="text-sm font-mono text-primary uppercase tracking-[0.3em] font-bold mb-4">Showcase</h2>
+          <h3 class="text-3xl md:text-5xl font-display font-bold">MY <span class="text-gradient">GALLERY</span></h3>
+        </div>
+        
+        <div class="relative w-full overflow-hidden flex -mx-4 group mb-20">
+          <div class="absolute top-0 left-0 bottom-0 w-32 bg-gradient-to-r from-darker to-transparent z-10 pointer-events-none"></div>
+          <div class="absolute top-0 right-0 bottom-0 w-32 bg-gradient-to-l from-darker to-transparent z-10 pointer-events-none"></div>
+
+          <div class="flex gap-6 px-4 whitespace-nowrap animate-slide-infinite">
+            <img src="https://i.postimg.cc/c1TFXgB2/20260522-015747.jpg" alt="Gallery Image 1" class="w-[300px] md:w-[400px] h-[200px] md:h-[250px] object-cover rounded-3xl border border-white/10 glass-premium shrink-0 hover:border-primary/50 transition-colors" />
+            <img src="https://i.postimg.cc/50gS7TLC/20260327-025709.jpg" alt="Gallery Image 2" class="w-[300px] md:w-[400px] h-[200px] md:h-[250px] object-cover rounded-3xl border border-white/10 glass-premium shrink-0 hover:border-primary/50 transition-colors" />
+            <img src="https://i.postimg.cc/VktBQdXm/20260403-071923.jpg" alt="Gallery Image 3" class="w-[300px] md:w-[400px] h-[200px] md:h-[250px] object-cover rounded-3xl border border-white/10 glass-premium shrink-0 hover:border-primary/50 transition-colors" />
+            <img src="https://i.postimg.cc/wMPJnpv7/20260402-092638.jpg" alt="Gallery Image 4" class="w-[300px] md:w-[400px] h-[200px] md:h-[250px] object-cover rounded-3xl border border-white/10 glass-premium shrink-0 hover:border-primary/50 transition-colors" />
+            
+            <img src="https://i.postimg.cc/c1TFXgB2/20260522-015747.jpg" alt="Gallery Image 1" class="w-[300px] md:w-[400px] h-[200px] md:h-[250px] object-cover rounded-3xl border border-white/10 glass-premium shrink-0 hover:border-primary/50 transition-colors" />
+            <img src="https://i.postimg.cc/50gS7TLC/20260327-025709.jpg" alt="Gallery Image 2" class="w-[300px] md:w-[400px] h-[200px] md:h-[250px] object-cover rounded-3xl border border-white/10 glass-premium shrink-0 hover:border-primary/50 transition-colors" />
+            <img src="https://i.postimg.cc/VktBQdXm/20260403-071923.jpg" alt="Gallery Image 3" class="w-[300px] md:w-[400px] h-[200px] md:h-[250px] object-cover rounded-3xl border border-white/10 glass-premium shrink-0 hover:border-primary/50 transition-colors" />
+            <img src="https://i.postimg.cc/wMPJnpv7/20260402-092638.jpg" alt="Gallery Image 4" class="w-[300px] md:w-[400px] h-[200px] md:h-[250px] object-cover rounded-3xl border border-white/10 glass-premium shrink-0 hover:border-primary/50 transition-colors" />
+          </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+           <div class="glass-premium rounded-3xl p-3 md:p-4 border border-white/10 hover:border-primary/40 transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+             <div class="aspect-video rounded-2xl overflow-hidden relative">
+               <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/UsNL1ZxpqvI?si=7TNRTi-zS25YRGAv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+             </div>
+           </div>
+           
+           <div class="glass-premium rounded-3xl p-3 md:p-4 border border-white/10 hover:border-secondary/40 transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+             <div class="aspect-video rounded-2xl overflow-hidden relative">
+               <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/2NoQ9e686NE?si=zCqSvD4vCvGuT3fl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+             </div>
+           </div>
+        </div>
+      </section>
+
+      <section class="py-24 overflow-hidden relative z-20 reveal-up">
+        <div class="text-center mb-16 px-6">
+          <h2 class="text-3xl md:text-5xl font-display font-bold">Elite <span class="text-gradient">Feedback</span></h2>
+        </div>
+        
+        <div class="relative w-full overflow-hidden flex -mx-4 group">
+          <div class="absolute top-0 left-0 bottom-0 w-32 bg-gradient-to-r from-darker to-transparent z-10 pointer-events-none"></div>
+          <div class="absolute top-0 right-0 bottom-0 w-32 bg-gradient-to-l from-darker to-transparent z-10 pointer-events-none"></div>
+
+          <div class="flex gap-6 px-4 whitespace-nowrap animate-slide-infinite">
+            <div class="glass-premium border border-white/5 w-[350px] p-8 rounded-3xl shrink-0 hover:border-primary/30 transition-colors whitespace-normal">
+              <div class="flex justify-between items-start mb-6">
+                 <div>
+                   <h4 class="font-bold text-white font-mono">ALEX_M</h4>
+                   <span class="text-[10px] uppercase font-bold text-primary tracking-widest">FUNDED</span>
+                 </div>
+                 <i data-lucide="zap" class="w-4 h-4 fill-emerald-400 text-emerald-400"></i>
+              </div>
+              <p class="text-gray-400 font-light leading-relaxed text-sm">" Joined 3 months ago. The education is top tier and signals are clean. Just passed my $100k challenge. "</p>
+            </div>
+            
+            <div class="glass-premium border border-white/5 w-[350px] p-8 rounded-3xl shrink-0 hover:border-primary/30 transition-colors whitespace-normal">
+              <div class="flex justify-between items-start mb-6">
+                 <div>
+                   <h4 class="font-bold text-white font-mono">SARAH_L</h4>
+                   <span class="text-[10px] uppercase font-bold text-primary tracking-widest">BEGINNER</span>
+                 </div>
+                 <i data-lucide="zap" class="w-4 h-4 fill-emerald-400 text-emerald-400"></i>
+              </div>
+              <p class="text-gray-400 font-light leading-relaxed text-sm">" I didn't know anything about forex. The video section helped me understand market structure perfectly. "</p>
+            </div>
+
+            <div class="glass-premium border border-white/5 w-[350px] p-8 rounded-3xl shrink-0 hover:border-primary/30 transition-colors whitespace-normal">
+              <div class="flex justify-between items-start mb-6">
+                 <div>
+                   <h4 class="font-bold text-white font-mono">DAVID_K</h4>
+                   <span class="text-[10px] uppercase font-bold text-primary tracking-widest">PRO</span>
+                 </div>
+                 <i data-lucide="zap" class="w-4 h-4 fill-emerald-400 text-emerald-400"></i>
+              </div>
+              <p class="text-gray-400 font-light leading-relaxed text-sm">" The community aspect is what sets this apart. Being around other profitable traders elevated my psychology. "</p>
+            </div>
+
+            <div class="glass-premium border border-white/5 w-[350px] p-8 rounded-3xl shrink-0 hover:border-primary/30 transition-colors whitespace-normal">
+              <div class="flex justify-between items-start mb-6">
+                 <div>
+                   <h4 class="font-bold text-white font-mono">JAMES_T</h4>
+                   <span class="text-[10px] uppercase font-bold text-primary tracking-widest">FUNDED</span>
+                 </div>
+                 <i data-lucide="zap" class="w-4 h-4 fill-emerald-400 text-emerald-400"></i>
+              </div>
+              <p class="text-gray-400 font-light leading-relaxed text-sm">" Pips don't lie. Been compounding my account 15% a month since joining the inner circle. "</p>
+            </div>
+            
+            <div class="glass-premium border border-white/5 w-[350px] p-8 rounded-3xl shrink-0 hover:border-primary/30 transition-colors whitespace-normal">
+              <div class="flex justify-between items-start mb-6">
+                 <div>
+                   <h4 class="font-bold text-white font-mono">ALEX_M</h4>
+                   <span class="text-[10px] uppercase font-bold text-primary tracking-widest">FUNDED</span>
+                 </div>
+                 <i data-lucide="zap" class="w-4 h-4 fill-emerald-400 text-emerald-400"></i>
+              </div>
+              <p class="text-gray-400 font-light leading-relaxed text-sm">" Joined 3 months ago. The education is top tier and signals are clean. Just passed my $100k challenge. "</p>
+            </div>
+            
+            <div class="glass-premium border border-white/5 w-[350px] p-8 rounded-3xl shrink-0 hover:border-primary/30 transition-colors whitespace-normal">
+              <div class="flex justify-between items-start mb-6">
+                 <div>
+                   <h4 class="font-bold text-white font-mono">SARAH_L</h4>
+                   <span class="text-[10px] uppercase font-bold text-primary tracking-widest">BEGINNER</span>
+                 </div>
+                 <i data-lucide="zap" class="w-4 h-4 fill-emerald-400 text-emerald-400"></i>
+              </div>
+              <p class="text-gray-400 font-light leading-relaxed text-sm">" I didn't know anything about forex. The video section helped me understand market structure perfectly. "</p>
+            </div>
+
+            <div class="glass-premium border border-white/5 w-[350px] p-8 rounded-3xl shrink-0 hover:border-primary/30 transition-colors whitespace-normal">
+              <div class="flex justify-between items-start mb-6">
+                 <div>
+                   <h4 class="font-bold text-white font-mono">DAVID_K</h4>
+                   <span class="text-[10px] uppercase font-bold text-primary tracking-widest">PRO</span>
+                 </div>
+                 <i data-lucide="zap" class="w-4 h-4 fill-emerald-400 text-emerald-400"></i>
+              </div>
+              <p class="text-gray-400 font-light leading-relaxed text-sm">" The community aspect is what sets this apart. Being around other profitable traders elevated my psychology. "</p>
+            </div>
+
+            <div class="glass-premium border border-white/5 w-[350px] p-8 rounded-3xl shrink-0 hover:border-primary/30 transition-colors whitespace-normal">
+              <div class="flex justify-between items-start mb-6">
+                 <div>
+                   <h4 class="font-bold text-white font-mono">JAMES_T</h4>
+                   <span class="text-[10px] uppercase font-bold text-primary tracking-widest">FUNDED</span>
+                 </div>
+                 <i data-lucide="zap" class="w-4 h-4 fill-emerald-400 text-emerald-400"></i>
+              </div>
+              <p class="text-gray-400 font-light leading-relaxed text-sm">" Pips don't lie. Been compounding my account 15% a month since joining the inner circle. "</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-32 px-6 relative z-20">
+        <div class="max-w-5xl mx-auto glass-premium p-16 rounded-[3rem] text-center relative overflow-hidden glow-border reveal-up">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-50"></div>
+          
+          <i data-lucide="award" class="w-16 h-16 text-white mx-auto mb-8 relative z-10"></i>
+          <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 relative z-10 text-white">Ready to <span class="text-gradient">Scale?</span></h2>
+          <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto relative z-10 font-light">
+            Stop guessing. Start executing with precision. Join thousands of profitable traders in the ultimate ecosystem.
+          </p>
+          
+          <button class="open-modal-btn relative group px-10 py-5 rounded-2xl font-bold text-darker bg-gradient-to-r from-primary to-white overflow-hidden shadow-[0_0_50px_rgba(0,240,255,0.3)] hover:scale-105 transition-all duration-300 z-10">
+            <span class="relative flex items-center justify-center gap-2 text-lg">
+              Initialize Registration <i data-lucide="chevron-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+            </span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="py-12 px-6 border-t border-white/5 bg-darker relative z-20">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+           <i data-lucide="trending-up" class="w-6 h-6 text-primary"></i>
+           <span class="font-display font-bold text-lg tracking-wider text-white">Pinak</span>
+        </div>
+        <div class="flex gap-6 text-sm text-gray-500 font-mono">
+           <a href="#" class="hover:text-primary transition-colors">PRIVACY_POLICY</a>
+           <a href="#" class="hover:text-primary transition-colors">TERMS_OF_SERVICE</a>
+           <a href="#" class="hover:text-primary transition-colors">SUPPORT_PORTAL</a>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto mt-8 pt-8 border-t border-white/5 text-center">
+        <p class="text-xs text-gray-600 max-w-3xl mx-auto">
+          RISK WARNING: Trading foreign exchange on margin carries a high level of risk, and may not be suitable for all investors. Past performance is not indicative of future results. The high degree of leverage can work against you as well as for you.
+        </p>
+        <p class="text-sm text-gray-400 mt-4">
+          Developed by Pinak Designer
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <div id="registration-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+    <div id="modal-backdrop" class="absolute inset-0 bg-darker/80 backdrop-blur-md opacity-0 transition-opacity duration-300"></div>
+    <div id="modal-content" class="relative w-full max-w-md glass-premium rounded-[2rem] p-8 shadow-2xl border border-primary/20 glow-border transform scale-90 opacity-0 translate-y-8 duration-300">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+      
+      <button id="close-modal-btn" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-white bg-white/5 rounded-full hover:bg-white/10 transition-colors z-20">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div id="form-view" class="relative z-10 transition-opacity">
+        <h2 class="text-3xl font-display font-bold mb-2 text-white">Join <span class="text-gradient">Hub</span></h2>
+        <p class="text-gray-400 text-sm mb-8 font-light">Complete authentication to gain access to the secure neural network.</p>
+
+        <form id="auth-form" class="space-y-5">
+          <div>
+            <label class="text-xs font-mono text-primary uppercase tracking-widest mb-2 block">Full Legal Name</label>
+            <input required type="text" id="input-name" class="w-full bg-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-inner" placeholder="Enter Name" />
+          </div>
+          
+          <div>
+            <label class="text-xs font-mono text-primary uppercase tracking-widest mb-2 block">Telegram Protocol</label>
+            <input required type="text" id="input-tg" class="w-full bg-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-inner" placeholder="@username" />
+          </div>
+
+          <div>
+            <label class="text-xs font-mono text-primary uppercase tracking-widest mb-2 block">WhatsApp Uplink</label>
+            <input required type="tel" id="input-wa" class="w-full bg-darker/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-inner" placeholder="+Country Code & Number" />
+          </div>
+
+          <button type="submit" id="submit-btn" class="w-full py-4 mt-6 bg-gradient-to-r from-primary to-secondary text-darker font-bold rounded-xl shadow-[0_0_20px_rgba(0,240,255,0.2)] hover:shadow-[0_0_30px_rgba(0,240,255,0.4)] hover:scale-[1.02] active:scale-95 transition-all flex justify-center items-center">
+            Authorize & Connect
+          </button>
+          
+          <div id="modal-admin-badge" class="hidden mt-6 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl items-center gap-3">
+            <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
+            <div class="text-left">
+              <div class="text-[10px] text-emerald-400/70 uppercase font-mono tracking-wider">Clearance Verified</div>
+              <div id="modal-admin-text" class="text-xs text-emerald-400 font-bold tracking-wide">Referral: </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div id="success-view" class="hidden py-12 text-center flex-col items-center relative z-10 transform opacity-0 transition-opacity duration-500">
+        <div class="w-24 h-24 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mb-6 border-2 border-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.5)] animate-bounce-soft">
+          <i data-lucide="check" class="w-12 h-12"></i>
+        </div>
+        <h3 class="text-3xl font-display font-bold mb-2 text-white">Access Granted</h3>
+        <p class="text-gray-400 mb-8 font-mono text-sm leading-relaxed">Identity verified. Establishing secure connection to Telegram syndicate...</p>
+        
+        <div class="w-full bg-darker border border-white/10 h-2 rounded-full overflow-hidden">
+          <div id="success-progress" class="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 w-0 transition-all duration-[2500ms] ease-linear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
