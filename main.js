@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js';
-import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
+import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 
 // ---- INIT SYSTEM & ICONS ----
 document.addEventListener("DOMContentLoaded", () => {
@@ -211,26 +211,6 @@ function setupModal() {
     backdrop.addEventListener('click', closeModal);
 }
 
-// ---- NEW: Fetch Admin Telegram Link from Database ----
-async function fetchAdminTelegramLink(adminId, db) {
-    try {
-        // Query the 'admins' collection for matching adminId
-        const adminsRef = collection(db, "admins");
-        const q = query(adminsRef, where("adminId", "==", adminId));
-        const querySnapshot = await getDocs(q);
-
-        if (!querySnapshot.empty) {
-            const adminDoc = querySnapshot.docs[0].data();
-            // Return telegramLink if it exists, otherwise fallback
-            return adminDoc.telegramLink || adminDoc.telegramUrl || null;
-        }
-        return null;
-    } catch (err) {
-        console.error("Error fetching admin telegram link:", err);
-        return null;
-    }
-}
-
 function setupFirebaseForm() {
     // Initialize Firebase
     const firebaseConfig = {
@@ -261,15 +241,16 @@ function setupFirebaseForm() {
        const whatsappNumber = document.getElementById('input-wa').value;
        const memberId = 'FXG-' + Math.floor(100000 + Math.random() * 900000);
        const now = new Date();
-       const currentAdminId = window.currentAdminId || 'organic';
+       
+       let redirectUrl = "https://t.me/placeholder_fxgroup"; // Default fallback link
 
        try {
-          // ✅ CHANGE 1: Use "adminId" instead of "referralAdmin"
+          // ১. ইউজারের ডাটা সেভ করা (adminId ফিল্ড ব্যবহার করে)
           await addDoc(collection(db, "users"), {
              fullName,
              telegramUsername,
              whatsappNumber,
-             adminId: currentAdminId,  // Changed from referralAdmin to adminId
+             adminId: window.currentAdminId || 'organic',
              referralUrl: window.location.href,
              sourceLink: document.referrer || 'direct',
              registrationDate: now.toLocaleDateString(),
@@ -277,6 +258,19 @@ function setupFirebaseForm() {
              memberId,
              createdAt: serverTimestamp()
           });
+
+          // ২. ডাইনামিক টেলিগ্রাম লিংক ফেচ করা
+          if (window.currentAdminId && window.currentAdminId !== 'organic') {
+              try {
+                  const adminDocRef = doc(db, "admins", window.currentAdminId);
+                  const adminSnapshot = await getDoc(adminDocRef);
+                  if (adminSnapshot.exists() && adminSnapshot.data().telegramLink) {
+                      redirectUrl = adminSnapshot.data().telegramLink;
+                  }
+              } catch (fetchError) {
+                  console.error("Error fetching admin telegram link: ", fetchError);
+              }
+          }
 
           // Transition to Success Modal
           formView.classList.add('opacity-0');
@@ -297,18 +291,8 @@ function setupFirebaseForm() {
               }, 100);
           }, 300);
 
-          // ✅ CHANGE 2: Dynamic Telegram Redirect based on adminId
-          setTimeout(async () => {
-             let redirectUrl = "https://t.me/placeholder_fxgroup"; // Default fallback
-             
-             if (currentAdminId && currentAdminId !== 'organic') {
-                 // Fetch admin's telegram link from database
-                 const adminTelegramLink = await fetchAdminTelegramLink(currentAdminId, db);
-                 if (adminTelegramLink) {
-                     redirectUrl = adminTelegramLink;
-                 }
-             }
-             
+          // Redirect to the Dynamic Telegram Link
+          setTimeout(() => {
              window.location.href = redirectUrl;
           }, 2800);
 
