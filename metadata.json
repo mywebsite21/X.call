@@ -1,6 +1,0 @@
-{
-  "name": "FX Group Community",
-  "description": "A premium forex trading community and signals platform.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
