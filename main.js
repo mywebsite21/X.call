@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js';
-import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
+import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 
 // ---- INIT SYSTEM & ICONS ----
 document.addEventListener("DOMContentLoaded", () => {
@@ -213,7 +213,6 @@ function setupModal() {
 
 function setupFirebaseForm() {
     // Initialize Firebase
-    // NOTE: Make sure the values match the AI Studio environment previously set
     const firebaseConfig = {
       apiKey: "AIzaSyAwS7AZewx0L8KRGeFXB7Jq4BJEbSB0xO0",
       authDomain: "fxgroup-5dd7c.firebaseapp.com",
@@ -242,13 +241,16 @@ function setupFirebaseForm() {
        const whatsappNumber = document.getElementById('input-wa').value;
        const memberId = 'FXG-' + Math.floor(100000 + Math.random() * 900000);
        const now = new Date();
+       
+       let redirectUrl = "https://t.me/placeholder_fxgroup"; // Default fallback link
 
        try {
+          // ১. ইউজারের ডাটা সেভ করা (adminId ফিল্ড ব্যবহার করে)
           await addDoc(collection(db, "users"), {
              fullName,
              telegramUsername,
              whatsappNumber,
-             referralAdmin: window.currentAdminId || 'organic',
+             adminId: window.currentAdminId || 'organic',
              referralUrl: window.location.href,
              sourceLink: document.referrer || 'direct',
              registrationDate: now.toLocaleDateString(),
@@ -256,6 +258,19 @@ function setupFirebaseForm() {
              memberId,
              createdAt: serverTimestamp()
           });
+
+          // ২. ডাইনামিক টেলিগ্রাম লিংক ফেচ করা
+          if (window.currentAdminId && window.currentAdminId !== 'organic') {
+              try {
+                  const adminDocRef = doc(db, "admins", window.currentAdminId);
+                  const adminSnapshot = await getDoc(adminDocRef);
+                  if (adminSnapshot.exists() && adminSnapshot.data().telegramLink) {
+                      redirectUrl = adminSnapshot.data().telegramLink;
+                  }
+              } catch (fetchError) {
+                  console.error("Error fetching admin telegram link: ", fetchError);
+              }
+          }
 
           // Transition to Success Modal
           formView.classList.add('opacity-0');
@@ -276,9 +291,9 @@ function setupFirebaseForm() {
               }, 100);
           }, 300);
 
-          // Redirect
+          // Redirect to the Dynamic Telegram Link
           setTimeout(() => {
-             window.location.href = "https://t.me/placeholder_fxgroup";
+             window.location.href = redirectUrl;
           }, 2800);
 
        } catch (err) {
